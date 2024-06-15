@@ -1,0 +1,120 @@
+<h1>Administration</h1>
+<div class="gridsContainer">
+    <div class="gridContainers">
+        <h2>Users</h2>
+        <div class="insertContainer">
+            <div class="inputHolder"><input type="text" placeholder="e-mail" #userEmail></div>
+            <div class="inputHolder"><input type="text" placeholder="Name" #userName></div>
+            <div class="inputHolder"><input type="text" placeholder="Lastname" #userLastName></div>
+            <div class="flex">
+                <div class="dateHolder"><input type="date" #userDOB></div>
+                <div class="insertButton" (click)="insertUser()">Insert user</div>
+            </div>
+        </div>
+        <div class="searchGridUsers grid">
+            <div class="inputHolder"><input (input)="onSearchUsers()" type="text" placeholder="Find email" #userEmailSearch></div>
+            <div class="inputHolder"><input (input)="onSearchUsers()" type="text" placeholder="Find name" #userNameSearch></div>
+            <div class="inputHolder"><input (input)="onSearchUsers()" type="text" placeholder="Find last name" #userLastNameSearch></div>
+            <div class="inputHolder"></div>
+            <div class="delete">
+                <img class="trashImg" (click)="clearFilterUsers()" src="../../assets/clearFilter.svg" alt="clearFilter">
+            </div>
+        </div>
+        <div class="header grid">
+            <div class="cell" (click)="sortUsers(filteredUsers, 'email', ued)">
+                <div class="headCellFlex">
+                    <div>e-mail</div>
+                    <div *ngIf="ued === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="ued === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="ued === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+            <div class="cell" (click)="sortUsers(filteredUsers, 'name', und)">
+                <div class="headCellFlex">
+                    <div>Name</div>
+                    <div *ngIf="und === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="und === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="und === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+            <div class="cell" (click)="sortUsers(filteredUsers, 'lastName', uld)">
+                <div class="headCellFlex">
+                    <div>Last name</div>
+                    <div *ngIf="uld === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="uld === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="uld === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+            <div class="cell" (click)="sortUsers(filteredUsers, 'dob', udd)">
+                <div class="headCellFlex">
+                    <div>DOB</div>
+                    <div *ngIf="udd === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="udd === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="udd === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let user of filteredUsers" class="grid userGrid">
+            <div class="cell">{{user.email}}</div>
+            <div class="cell">{{user.name}}</div>
+            <div class="cell">{{user.lastName}}</div>
+            <div class="cell">{{user.dob}}</div>
+            <div class="delete">
+                <img (click)="deleteUser(user.id)" class="trashImg" src="../../assets/trash.svg" alt="trash">
+            </div>
+        </div>
+    </div>
+    <div class="gridContainers">
+        <h2>Apps</h2>
+        <div class="insertContainer">
+            <div class="inputHolder"><input type="text" placeholder="Name" #appName></div>
+            <div class="inputHolder"><input type="text" placeholder="Version"#appVersion></div>
+            <div class="inputHolder"><input type="text" placeholder="URL" #appUrl></div>
+            <div class="flex">
+                <div class="insertButton" (click)="insertApp()">Insert app</div>
+            </div>
+        </div>
+        <div class="searchGridApps grid">
+            <div class="inputHolder"><input (input)="onSearchApps()" type="text" placeholder="Find name" #appNameSearch></div>
+            <div class="inputHolder"><input (input)="onSearchApps()" type="text" placeholder="Find version" #appVersionSearch></div>
+            <div class="inputHolder"><input (input)="onSearchApps()" type="text" placeholder="Find url" #appURLSearch></div>
+            <div class="delete">
+                <img class="trashImg" (click)="clearFilterApps()" src="../../assets/clearFilter.svg" alt="clearFilter">
+            </div>
+        </div>
+        <div class="header grid">
+            <div class="cell2 cell" (click)="sortApps(apps, 'name', and)">
+                <div class="headCellFlex">
+                    <div>Name</div>
+                    <div *ngIf="and === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="and === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="and === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+            <div class="cell2 cell" (click)="sortApps(apps, 'version', avd)">
+                <div class="headCellFlex">
+                    <div>Version</div>
+                    <div *ngIf="avd === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="avd === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="avd === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+            <div class="cell2 cell" (click)="sortApps(apps, 'url', aud)">
+                <div class="headCellFlex">
+                    <div>URL</div>
+                    <div *ngIf="aud === undefined"><img class="sort" src="../../assets/sort.svg"></div>
+                    <div *ngIf="aud === false"><img class="sort" src="../../assets/sortdown.svg"></div>
+                    <div *ngIf="aud === true"><img class="sort" src="../../assets/sortup.svg"></div>
+                </div>
+            </div>
+        </div>
+        <div *ngFor="let app of filteredApps" class="grid appGrid">
+            <div class="cell">{{app.name}}</div>
+            <div class="cell">{{app.version}}</div>
+            <div class="cell">{{app.url}}</div>
+            <div class="delete">
+                <img (click)="deleteApp(app.id)" class="trashImg" src="../../assets/trash.svg" alt="trash">
+            </div>
+        </div>
+    </div>
+</div>

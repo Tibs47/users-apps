@@ -1,0 +1,163 @@
+h1, h2 {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+.gridsContainer {
+    display: flex;
+    justify-content: space-between;
+    .gridContainers {
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+        background-color: rgb(235, 235, 235);
+        margin: 10px 0;
+        width: 49%;
+        padding: 0 0 15px 0;
+    }
+    .grid {
+        display: flex;
+        padding: 0 5px 0 20px ;
+        height: 24px;
+        border-bottom: 1px solid gray;
+        .cell {
+            .headCellFlex {
+                cursor: pointer;
+                display: flex;
+                .sort {
+                    height: 16px;
+                    padding: 4px;
+                }
+            }
+            height: 24px;
+            line-height: 26px;
+            padding: 0 2px;
+            overflow: hidden;
+            font-size: small;
+        }
+        .delete {
+            .trashImg {
+                height: 16px;
+                padding: 4px;
+                cursor: pointer;
+            }
+            .trashImg:hover {
+                filter:
+                    saturate(100%)
+                    brightness(60%) 
+                    contrast(200%);
+            }
+        }
+    }
+    .searchGridUsers {
+        display: flex;
+        background-color: #818181;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        .inputHolder {
+            height: 24px;
+            line-height: 26px;
+            padding: 0 2px;
+            overflow: hidden;
+            font-size: small;
+            width: 23%;
+            input {
+                width: 80%;
+            }
+        }
+    }
+    .searchGridApps {
+        display: flex;
+        background-color: #818181;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        .inputHolder {
+            height: 24px;
+            line-height: 26px;
+            padding: 0 2px;
+            overflow: hidden;
+            font-size: small;
+            width: 30%;
+            input {
+                width: 80%;
+            }
+        }
+    }
+    .red::placeholder {
+        color: #E82424;
+    }
+    .header {
+        font-weight: bold;
+        font-size: large;
+        background-color: rgb(61, 61, 61);
+        color: white;
+        .cell {
+            width: 23%;
+        }
+        .cell2 {
+            width: 30%;
+        }
+    }
+    .userGrid {
+        background-color: white;
+        .cell {
+            width: 23%;
+        }
+    }
+    .appGrid {
+        background-color: white;
+        .cell {
+            width: 30%;
+        }
+    }
+    .insertContainer {
+        .flex {
+            display: flex;
+            justify-content: left;
+            width: 80%;
+            margin: 10px auto 30px auto;
+        }
+        input {
+            border: 1px solid gray;
+        }
+        .inputHolder {
+            width: fit-content;
+            margin: 10px auto;
+            height: 25px;
+            width: 80%;
+            input {
+                width: 100%;
+                height: 25px;
+            }
+        }
+        .dateHolder {
+            width: 30%;
+            input {
+                width: 100%;
+                height: 25px;
+            }
+        }
+        .insertButton {
+            border: 1px solid transparent;
+            background-color: gray;
+            width: fit-content;
+            height: 25px;
+            line-height: 25px;
+            padding: 0 10px;
+            color: white;
+            border-radius: 2px;
+            margin: 0 auto;
+        }
+        .insertButton:hover {
+            cursor: pointer;
+            background-color: #04AA6D;
+        }
+    }
+}
+@media screen and (max-width: 1200px) {
+    .gridsContainer {
+        display: block;
+        .gridContainers {
+            width: 100%;
+            padding-top: 5px;
+        }
+    }
+}

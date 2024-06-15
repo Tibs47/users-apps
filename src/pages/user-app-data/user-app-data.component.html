@@ -1,0 +1,55 @@
+<h1>Users Apps</h1>
+<div class="gridContainers">
+    <div class="header grid">
+        <div class="cell">e-mail</div>
+        <div class="cell">Name</div>
+        <div class="cell">Last name</div>
+        <div class="cell">DOB</div>
+    </div>
+    <div *ngFor="let user of usersApps">
+        <div [ngClass]="menuIsOpen(user.user.id) ? 'box' : ''">
+            <div class="grid userGrid" (click)="openAppMenu(user.user.id)">
+                <div class="cell">{{user.user.email}}</div>
+                <div class="cell">{{user.user.name}}</div>
+                <div class="cell">{{user.user.lastName}}</div>
+                <div class="cell">{{user.user.dob}}</div>
+                <div class="expand" *ngIf="menuIsOpen(user.user.id)">
+                    <img class="expandImg" src="../../assets/up.svg" alt="up">
+                </div>
+                <div class="expand" *ngIf="!menuIsOpen(user.user.id)">
+                    <img class="expandImg" src="../../assets/down.svg" alt="down">
+                </div>
+            </div>
+            <div class="addAppMenu" *ngIf="menuIsOpen(user.user.id)">
+                <div class="gridContainersApps">
+                    <div class="headerApps grid">
+                        <div class="cell">Name</div>
+                        <div class="cell">Version</div>
+                        <div class="cell">URL</div>
+                        <div class="cell">{{user.user.name}}'s App List</div>
+                    </div>
+                    <div *ngFor="let relation of user.relationIds">
+                        <div class="grid appsGrid">
+                            <div class="cell">{{translateApps(relation.appId, 'name')}}</div>
+                            <div class="cell">{{translateApps(relation.appId, 'version')}}</div>
+                            <div class="cell">{{translateApps(relation.appId, 'url')}}</div>
+                            <div class="expand">
+                                <img (click)="deleteRelation(relation.id)" class="expandImg" src="../../assets/trash.svg" alt="trash">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="dropdown">
+                            <button class="dropbtn">Add new app to {{user.user.name}} {{user.user.lastName}}</button>
+                            <div class="dropdown-content">
+                                <div *ngFor="let app of this.apps">
+                                    <a (click)="addRelation(app.id, user.user.id)">{{app.name}} {{app.version}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
