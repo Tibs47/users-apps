@@ -1,4 +1,4 @@
-# App is hosted on [tibormstart.xyz](tibormstart.xyz)
+# App is hosted on [tibormstart.xyz](https://tibormstart.xyz)
 
 # UsersApps
 
