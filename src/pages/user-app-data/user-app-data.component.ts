@@ -87,22 +87,6 @@ export class UserAppDataComponent {
     this.initUserApps();
   }
 
-  public openAppMenu (id: number) {
-    const menuItem = this.openMenu.find(item => item.id === id);
-    if (menuItem?.open === false) {
-      menuItem.open = true;
-    } else if (menuItem?.open === true) {
-      menuItem.open = false;
-    } else {
-      console.error(`Menu item with id ${id} not found`);
-    }
-  }
-
-  public menuIsOpen (id: number) {
-    const menuItem = this.openMenu.find(item => item.id === id);
-    return menuItem ? menuItem.open : false;
-  }
-
   async deleteRelation (id: number) {
     const { error } = await supabase
     .from('AppsUsers')
@@ -128,6 +112,22 @@ export class UserAppDataComponent {
       console.log("error inserting relation", error);
     }
     this.getRelations();
+  }
+
+  public openAppMenu (id: number) {
+    const menuItem = this.openMenu.find(item => item.id === id);
+    if (menuItem?.open === false) {
+      menuItem.open = true;
+    } else if (menuItem?.open === true) {
+      menuItem.open = false;
+    } else {
+      console.error(`Menu item with id ${id} not found`);
+    }
+  }
+
+  public menuIsOpen (id: number) {
+    const menuItem = this.openMenu.find(item => item.id === id);
+    return menuItem ? menuItem.open : false;
   }
 
   public translateApps(id: number, attr: string): string | undefined {

@@ -74,6 +74,17 @@ export class DataAdministrationComponent {
     if (error) {
       console.log("error removing user", error);
     }
+    this.deleteUserRelations(id);
+  }
+  //delete relations to user to prevent blank data
+  async deleteUserRelations(userId: number) {
+    const { error } = await supabase
+    .from('AppsUsers')
+    .delete()
+    .eq('userId', userId)
+    if (error) {
+      console.log("error removing relation", error);
+    }
   }
 
   async deleteApp(id: number) {
@@ -84,6 +95,17 @@ export class DataAdministrationComponent {
     this.getApps();
     if (error) {
       console.log("error removing app", error);
+    }
+    this.deleteAppRelations(id);
+  }
+  //delete relations to the app to prevent blank data
+  async deleteAppRelations(appId: number) {
+    const { error } = await supabase
+    .from('AppsUsers')
+    .delete()
+    .eq('appId', appId)
+    if (error) {
+      console.log("error removing relation", error);
     }
   }
 
@@ -206,7 +228,6 @@ export class DataAdministrationComponent {
   public and: boolean | undefined = undefined;
   public avd: boolean | undefined = undefined;
   public aud: boolean | undefined = undefined;
-
   public sortApps(apps: App[], byColumn: AppKeys, direction: boolean | undefined) {
     const sortedApps = [...apps];
     if (direction) {
@@ -247,7 +268,7 @@ export class DataAdministrationComponent {
         this.avd = undefined;
         break;
     }
-    this.apps = sortedApps;
+    this.filteredApps = sortedApps;
   }
 
   //for apps sort arrows
@@ -255,7 +276,6 @@ export class DataAdministrationComponent {
   public und: boolean | undefined = undefined;
   public uld: boolean | undefined = undefined;
   public udd: boolean | undefined = undefined;
-
   public sortUsers(users: User[], byColumn: UserKeys, direction: boolean | undefined) {
     const sortedUsers = [...users];
     if (direction) {
@@ -319,6 +339,7 @@ export class DataAdministrationComponent {
       user.lastName.toLowerCase().includes(searchTerm3)
     );
   }
+
   onSearchApps() {
     const searchTerm1 = this.appNameSearch.nativeElement.value.toLowerCase();
     const searchTerm2 = this.appVersionSearch.nativeElement.value.toLowerCase();
@@ -330,12 +351,14 @@ export class DataAdministrationComponent {
       app.url.toLowerCase().includes(searchTerm3)
     );
   }
+
   clearFilterUsers() {
     this.userEmailSearch.nativeElement.value = '';
     this.userNameSearch.nativeElement.value = '';
     this.userLastNameSearch.nativeElement.value = '';
     this.onSearchUsers();
   }
+
   clearFilterApps() {
     this.appNameSearch.nativeElement.value = '';
     this.appVersionSearch.nativeElement.value = '';
