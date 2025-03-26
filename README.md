@@ -1,5 +1,5 @@
 # App is hosted on [tibormstart.xyz](https://tibormstart.xyz)
-
+data might not show up because free database on supabase is paused after a week of no interactions
 # UsersApps
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.0.
